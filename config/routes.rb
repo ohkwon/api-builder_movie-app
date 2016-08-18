@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/movies', to: 'movies#index'
+      get '/', to: 'movies#index'
       get '/movies/index', to: 'movies#index'
       get '/movies/:id', to: 'movies#show'
       post '/movies', to: 'movies#create'
