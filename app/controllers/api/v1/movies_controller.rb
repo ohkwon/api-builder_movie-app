@@ -21,8 +21,11 @@ class Api::V1::MoviesController < ApplicationController
       year: params[:year]
       )
 
-    @movie.save
-    render :show
+    if @movie.save
+      render json: @movie
+    else
+      render json: {errors: @movie.errors.full_messages}, status: 422
+    end
 
   end
 
@@ -44,7 +47,7 @@ class Api::V1::MoviesController < ApplicationController
 
     @movie = Movie.find_by(id: params[:id])
     @movie.destroy
-    render :show
+    render json: @movie
 
   end
   

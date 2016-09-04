@@ -2,13 +2,26 @@
   <div ng-controller = "moviesCtrl" ng-init = "setup()">
     <ul>
       <div ng-repeat = "movie in movies">
-        <li ng-click = "showInformation(movie)">{{movie.name}}</li>
+        <li><span ng-click = "showInformation(movie)">{{movie.name}}</span> <button ng-click = "deleteMovie(movie)">Delete Movie</button> </li>
         <ul ng-if = "movie.showInfo">
-          <li>Movie Run Time: {{movie.length}}</li>
-          <li>Year of Release: {{movie.year}} minutes</li>
+          <li>Movie Run Time: {{movie.length}} minutes</li>
+          <li>Year of Release: {{movie.year}}</li>
           <li>Summary: {{movie.description}}</li>
         </ul>
       </div>
     </ul>
+    <div>
+      <h2>Add New Movie(ONLY STAR WARS)</h2>
+      <div ng-if = "errors" style = "color: red">
+        <ul>
+          <li ng-repeat = "error in errors">{{error}}</li>
+        </ul>
+      </div>
+      <p>Name: <input ng-model = "newName"></p>
+      <p>Length: <input ng-model = "newLength"></p>
+      <p>Description: <input ng-model = "newDescription"></p>
+      <p>Year: <input ng-model = "newYear"></p>
+      <p><button ng-click = "addMovie(newName, newLength, newDescription, newYear)">Add New (Star Wars) Movie</button></p>
+    </div>
   </div>
 </div>
