@@ -1,0 +1,14 @@
+<div ng-app>
+  <div ng-controller = "moviesCtrl" ng-init = "setup()">
+    <ul>
+      <div ng-repeat = "movie in movies">
+        <li>{{movie.name}}</li>
+        <ul>
+          <li>{{movie.length}}</li>
+          <li>{{movie.description}}</li>
+          <li>{{movie.year}}</li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</div>

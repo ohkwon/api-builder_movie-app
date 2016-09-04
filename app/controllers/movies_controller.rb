@@ -2,50 +2,50 @@ class MoviesController < ApplicationController
 
   def index
 
-    @movies = Movie.all
+    # @movies = Movie.all
     
   end
 
-  def show
+  # def show
     
-    @movie = Movie.find_by(id: params[:id])
+  #   @movie = Movie.find_by(id: params[:id])
 
-  end
+  # end
 
-  def create
+  # def create
 
-    @movie = Movie.new(
-      name: params[:name],
-      length: params[:length],
-      description: params[:description],
-      year: params[:year]
-      )
+  #   @movie = Movie.new(
+  #     name: params[:name],
+  #     length: params[:length],
+  #     description: params[:description],
+  #     year: params[:year]
+  #     )
 
-    @movie.save
-    render :show
+  #   @movie.save
+  #   render :show
 
-  end
+  # end
 
-  def update
+  # def update
 
-    @movie = Movie.find_by(id: params[:id])
-    @movie.assign_attributes(
-      name: params[:name],
-      length: params[:length],
-      description: params[:description],
-      year: params[:year]
-      )
-    @movie.save
-    render :show
+  #   @movie = Movie.find_by(id: params[:id])
+  #   @movie.assign_attributes(
+  #     name: params[:name],
+  #     length: params[:length],
+  #     description: params[:description],
+  #     year: params[:year]
+  #     )
+  #   @movie.save
+  #   render :show
 
-  end
+  # end
 
-  def destroy
+  # def destroy
 
-    @movie = Movie.find_by(id: params[:id])
-    @movie.destroy
-    render :show
+  #   @movie = Movie.find_by(id: params[:id])
+  #   @movie.destroy
+  #   render :show
 
-  end
+  # end
 
 end

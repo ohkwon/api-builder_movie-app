@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get '/movies', to: 'movies#index'
   
   namespace :api do
     namespace :v1 do
@@ -17,6 +19,9 @@ Rails.application.routes.draw do
       post '/movies', to: 'movies#create'
       patch '/movies/:id', to: 'movies#update'
       delete '/movies/:id', to: 'movies#destroy'
+    end
+    namespace :v3 do
+      get '/movies', to: 'movies#index'
     end
   end
 
