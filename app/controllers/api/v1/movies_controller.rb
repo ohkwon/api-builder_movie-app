@@ -2,7 +2,19 @@ class Api::V1::MoviesController < ApplicationController
 
   def index
 
-    @movies = Movie.all
+    search_attribute = params[:search_attribute]
+
+    if search_attribute
+      if search_attribute == "name"
+        @movies = Movie.all.where("name ILIKE ?", "%#{params[:search_attribute_2]}%")
+      elsif search_attribute == "length"
+        @movies = Movie.where("length ILIKE ?", "%#{params[:search_attribute_2].to_i}%")
+      elsif search_attribute == "year"
+        @movies = Movie.where("year ILIKE ?", "%#{params[:search_attribute_2].to_i}%")
+      end
+    else
+      @movies = Movie.all
+    end
     
   end
 

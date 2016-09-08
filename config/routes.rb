@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/movies', to: 'movies#index'
+  get '/movies2', to: 'movies#index2'
   
   namespace :api do
     namespace :v1 do

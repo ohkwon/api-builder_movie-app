@@ -1,0 +1,22 @@
+<div ng-app = "app">
+  <div ng-controller = "moviesCtrl">
+
+    <p> <input ng-model = "searchString"> <button ng-click = "searchMovies(searchString)">Search</button> </p>
+    
+    <table class = "table">
+      <tr>
+        <th>Title</th>
+        <th>Year of Release</th>
+        <th>Movie Length</th>
+        <th>Summary</th>
+      </tr>
+      <tr ng-repeat = "movie in movies">
+        <th>{{movie.name}}</th>
+        <th>{{movie.year}}</th>
+        <th>{{movie.length}}</th>
+        <th>{{movie.description}}</th>
+      </tr>
+    </table>
+
+  </div>
+</div>
