@@ -43,6 +43,26 @@
         $scope.movies.splice(index, 1);
       });
     };
+
+    $scope.pickEditMovie = function(movie) {
+      $scope.editingMovie = movie;
+    }
+
+    $scope.updateMovie = function(editName, editLength, editDescription, editYear, editId) {
+      var movie = {
+        name: editName,
+        length: editLength,
+        description: editDescription,
+        year: editYear,
+        id: editId
+      };
+      var index = $scope.movies.indexOf(movie);
+
+      $http.patch("/api/v1/moves/" + movie.id + ".json").then(function(response) {
+        $scope.movies[index] = response.data;
+      });
+      $scope.editingMovie = null;
+    }
     
     window.$scope = $scope;
   });

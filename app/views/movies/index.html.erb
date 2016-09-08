@@ -1,8 +1,9 @@
 <div ng-app = "app">
   <div ng-controller = "moviesCtrl" ng-init = "setup()">
     <ul>
-      <div ng-repeat = "movie in movies">
-        <li><span ng-click = "showInformation(movie)">{{movie.name}}</span> <button ng-click = "deleteMovie(movie)">Delete Movie</button> </li>
+      Movie Filter: <input ng-model = "movieFilter">
+      <div ng-repeat = "movie in movies | filter: movieFilter">
+        <li><span ng-click = "showInformation(movie)">{{movie.name}}</span> <button ng-click = "pickEditMovie(movie)">Edit This Movie</button> <button ng-click = "deleteMovie(movie)">Delete Movie</button> </li>
         <ul ng-if = "movie.showInfo">
           <li>Movie Run Time: {{movie.length}} minutes</li>
           <li>Year of Release: {{movie.year}}</li>
@@ -10,6 +11,14 @@
         </ul>
       </div>
     </ul>
+    <div ng-if = "editingMovie">
+      <h3>Edit Movie</h3>
+      <p>Name: <input ng-model = "editName">{{editingMovie.name}}</input></p>
+      <p>Length: <input ng-model = "editLength"></p>
+      <p>Description: <input ng-model = "editDescription"></p>
+      <p>Year: <input ng-model = "editYear"></p>
+      <p> <button ng-click = "updateMovie(editName, editLength, editDescription, editYear, editingMovie.id)">Update Movie</button> </p>
+    </div>
     <div>
       <h2>Add New Movie(ONLY STAR WARS)</h2>
       <div ng-if = "errors" style = "color: red">
@@ -17,7 +26,7 @@
           <li ng-repeat = "error in errors">{{error}}</li>
         </ul>
       </div>
-      <p>Name: <input ng-model = "newName"></p>
+      <p>Name: <input ng-model = "newName"></input></p>
       <p>Length: <input ng-model = "newLength"></p>
       <p>Description: <input ng-model = "newDescription"></p>
       <p>Year: <input ng-model = "newYear"></p>
