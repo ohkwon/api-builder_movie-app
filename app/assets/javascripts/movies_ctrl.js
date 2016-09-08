@@ -5,13 +5,18 @@
     $scope.setup = function() {
       $http.get("/api/v1/movies.json").then(function(response) {
 
-        for (var i = 0; i < response.data.length; i++) {
-          response.data[i].addKey = false;
-        }
-
         $scope.movies = response.data;
 
       });
+    }
+
+    $scope.sortByAttribute = function(attribute) {
+      if ($scope.sortAttribute == attribute) {
+        $scope.descending = !$scope.descending;
+      } else {
+        $scope.descending = false;
+      }
+      $scope.sortAttribute = attribute;
     }
 
     $scope.showInformation = function(movie){
@@ -56,7 +61,7 @@
         year: editingMovie.year,
         id: editingMovie.id
       };
-      console.log(movie);
+
       var index = $scope.movies.indexOf(movie);
 
       $http.patch("/api/v1/movies/" + movie.id + ".json", movie).then(function(response) {

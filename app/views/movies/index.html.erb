@@ -2,14 +2,72 @@
   <div ng-controller = "moviesCtrl" ng-init = "setup()">
     <ul>
       Movie Filter: <input ng-model = "movieFilter">
-      <div ng-repeat = "movie in movies | filter: movieFilter">
-        <li><span ng-click = "showInformation(movie)">{{movie.name}}</span> <button ng-click = "pickEditMovie(movie)">Edit This Movie</button> <button ng-click = "deleteMovie(movie)">Delete Movie</button> </li>
-        <ul ng-if = "movie.showInfo">
-          <li>Movie Run Time: {{movie.length}} minutes</li>
-          <li>Year of Release: {{movie.year}}</li>
-          <li>Summary: {{movie.description}}</li>
-        </ul>
-      </div>
+      <table class = "table">
+        <tr>
+          <th ng-click = "sortByAttribute('name')" >
+            Name
+            <span ng-if = "descending === false">
+              <span ng-if = "sortAttribute == 'name'">
+                &uarr;
+              </span>
+            </span>
+            <span ng-if = "descending === true">
+              <span ng-if = "sortAttribute == 'name'">
+                &darr;
+              </span>
+            </span>
+          </th>
+          <th ng-click = "sortByAttribute('length')" >
+            Movie Run Time
+            <span ng-if = "descending === false">
+              <span ng-if = "sortAttribute == 'length'">
+                &uarr;
+              </span>
+            </span>
+            <span ng-if = "descending === true">
+              <span ng-if = "sortAttribute == 'length'">
+                &darr;
+              </span>
+            </span>
+          </th>
+          <th ng-click = "sortByAttribute('year')" >
+            Year of Release
+            <span ng-if = "descending === false">
+              <span ng-if = "sortAttribute == 'year'">
+                &uarr;
+              </span>
+            </span>
+            <span ng-if = "descending === true">
+              <span ng-if = "sortAttribute == 'year'">
+                &darr;
+              </span>
+            </span>
+          </th>
+          <th ng-click = "sortByAttribute('description')" >
+            Summary
+            <span ng-if = "descending === false">
+              <span ng-if = "sortAttribute == 'description'">
+                &uarr;
+              </span>
+            </span>
+            <span ng-if = "descending === true">
+              <span ng-if = "sortAttribute == 'description'">
+                &darr;
+              </span>
+            </span>
+          </th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <tr ng-repeat = "movie in movies | filter: movieFilter | orderBy: sortAttribute:descending">
+          <td>{{movie.name}}</td>
+          <td>{{movie.length}}</td>
+          <td>{{movie.year}}</td>
+          <td>{{movie.description}}</td>
+          <td><button ng-click = "pickEditMovie(movie)">Edit This Movie</button></td>
+          <td><button ng-click = "deleteMovie(movie)">Delete Movie</button></td>
+        </tr>
+      </table>
     </ul>
     <div ng-if = "editingMovie">
       <h3>Edit Movie</h3>
