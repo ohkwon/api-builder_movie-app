@@ -48,17 +48,18 @@
       $scope.editingMovie = movie;
     }
 
-    $scope.updateMovie = function(editName, editLength, editDescription, editYear, editId) {
+    $scope.updateMovie = function(editingMovie) {
       var movie = {
-        name: editName,
-        length: editLength,
-        description: editDescription,
-        year: editYear,
-        id: editId
+        name: editingMovie.name,
+        length: editingMovie.length,
+        description: editingMovie.description,
+        year: editingMovie.year,
+        id: editingMovie.id
       };
+      console.log(movie);
       var index = $scope.movies.indexOf(movie);
 
-      $http.patch("/api/v1/moves/" + movie.id + ".json").then(function(response) {
+      $http.patch("/api/v1/movies/" + movie.id + ".json", movie).then(function(response) {
         $scope.movies[index] = response.data;
       });
       $scope.editingMovie = null;
