@@ -69,6 +69,10 @@
       });
       $scope.editingMovie = null;
     }
+
+    $scope.cancelEdit = function() {
+      $scope.editingMovie = null;
+    }
     
     window.$scope = $scope;
   });
