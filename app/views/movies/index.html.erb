@@ -1,7 +1,5 @@
 <div ng-app = "app">
   <div ng-controller = "moviesCtrl" ng-init = "setup()">
-  {{1+1}}
-  <button ng-click = "yo()"></button>
     <ul>
       Movie Filter: <input ng-model = "movieFilter" list = "movies">
       <table class = "table">
@@ -92,6 +90,7 @@
       <p>Year: <input ng-model = "newYear"></p>
       <p><button ng-click = "addMovie(newName, newLength, newDescription, newYear)">Add New (Star Wars) Movie</button></p>
     </div>
-    <%= render partial: "movies/datalist" %> 
+    <millenium-falcon></millenium-falcon>
+    <auto-list></auto-list>
   </div>
 </div>
