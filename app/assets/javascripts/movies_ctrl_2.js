@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  angular.module("app").controller("moviesCtrl", function($scope, $http) {
+  angular.module("app").controller("moviesCtrl2", function($scope, $http) {
 
     $scope.searchMovies = function(searchString) {
       console.log("/api/v1/movies?search_attribute=name&search_attribute_2=" + searchString);
